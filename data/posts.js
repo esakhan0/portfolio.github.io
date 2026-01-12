@@ -2,7 +2,7 @@
 window.POSTS = [
   {
     title: "I built a portfolio in a day (and what I learned)",
-    date: "2026-01-11",
+    date: "2026-05-11",
     excerpt: "How I designed it, fixed paths for GitHub Pages, and kept styling consistent.",
     url: "posts/portfolio-in-a-day.html",
     tags: ["GitHub Pages", "HTML", "CSS"]
