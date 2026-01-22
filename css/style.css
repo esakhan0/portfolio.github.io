@@ -209,6 +209,24 @@ h2{
 .heroAvatar{ grid-area: avatar; }
 .heroQuick{ grid-area: quick; }
 
+.heroImg{
+  margin-top: 14px;
+  border-radius: 18px;
+  overflow: hidden;                 /* THIS is what clips the corners */
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.03);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.35);
+  max-width: 100%;
+}
+
+.heroImg img{
+  width: 100%;                      /* stops “giant” */
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+
 .avatarCard{
   display:flex;
   justify-content:flex-end;
