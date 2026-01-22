@@ -4,8 +4,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Home | Esa Aslam Khan</title>
-  <link rel="stylesheet" href="css/style.css" />
 </head>
+
 
 <body>
   <div class="wrap">
@@ -106,8 +106,31 @@
     </footer>
   </div>
 
-  <script src="data/posts.js"></script>
-  <script src="data/projects.js"></script>
-  <script src="js/main.js"></script>
+<script src="/js/version.js"></script>
+
+<script>
+  const v = window.SITE_VERSION;
+
+  // Load CSS (cache-busted)
+  const css = document.createElement("link");
+  css.rel = "stylesheet";
+  css.href = `/css/style.css?v=${v}`;
+  document.head.appendChild(css);
+
+  // Load data files
+  const posts = document.createElement("script");
+  posts.src = `/data/posts.js?v=${v}`;
+  document.body.appendChild(posts);
+
+  const projects = document.createElement("script");
+  projects.src = `/data/projects.js?v=${v}`;
+  document.body.appendChild(projects);
+
+  // Load main logic LAST
+  const main = document.createElement("script");
+  main.src = `/js/main.js?v=${v}`;
+  document.body.appendChild(main);
+</script>
+
 </body>
 </html>
