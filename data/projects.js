@@ -11,7 +11,7 @@ window.PROJECTS = [
   },
   {
     title: "I made a minecraft server that my friends can play on!",
-    date: "2026-01-25",
+    date: "2026-01-18",
     excerpt: "Click to see how and what I used to create my minecraft server!",
     url: "projects/project2",
     stack: ["HTML", "CSS", "JS"],
