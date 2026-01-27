@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>I made a minecraft server!</title>
+</head>
+
+<body>
+  <div class="wrap">
+    <!-- NAV -->
+    <header class="nav">
+      <a class="brand" href="/" aria-label="Go to home">
+      <span class="icon">💻</span>
+        <span>Esa Aslam Khan&nbsp;</span>
+      </a>
+
+      <nav class="navlinks" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/posts">Blog</a>
+        <a href="/projects" class="active">Projects</a>
+      </nav>
+    </header>
+
+    <!-- POST -->
+    <article class="card post">
+		
+      <div class="postTop">
+        <span class="pill">Project</span>
+        <div class="postMeta">Jan 26, 2026 • 6 min read</div>
+      </div>
+
+      <h1 class="postTitle">Building my home network!</h1>
+      <p class="sub">
+      I built a fully functional network for my house that supports up to 1 Gbps.&nbsp; &nbsp; </p>
+
+      <h2>Items I used to create my network.&nbsp;</h2>
+      <ul class="listClean">
+        <li>Unifi Dream Router</li>
+        <li>Unifi AP AC PRO x 2</li>
+        <li>Unifi UAP-AC-M x 1</li>
+        <li>Unifi AP AC LITE x 1&nbsp; &nbsp;</li>
+      </ul>
+
+      <h2>How I built my network</h2>
+      <p>
+        &nbsp;I wanted to build a seamless network that connected my devices while moving</p>
+<div class="heroImg"> </div>     
+<div class="postNav">
+      <a class="btn btnGhost" href="/projects">← Back to Projects</a>
+      <a class="btn" href="/posts/">See Blog →</a>
+      </div>
+    </article>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="contact">
+      <div>© <span id="year">2026 Esa Aslam Khan</span> </div>
+      <div class="footerLinks">
+        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:you@example.com">Email</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="/js/version.js"></script>
+
+<script>
+  const v = window.SITE_VERSION;
+
+  // Load CSS (cache-busted)
+  const css = document.createElement("link");
+  css.rel = "stylesheet";
+  css.href = `/css/style.css?v=${v}`;
+  document.head.appendChild(css);
+
+  // Load data files
+  const posts = document.createElement("script");
+  posts.src = `/data/posts.js?v=${v}`;
+  document.body.appendChild(posts);
+
+  const projects = document.createElement("script");
+  projects.src = `/data/projects.js?v=${v}`;
+  document.body.appendChild(projects);
+
+  // Load main logic LAST
+  const main = document.createElement("script");
+  main.src = `/js/main.js?v=${v}`;
+  document.body.appendChild(main);
+</script>
+
+</body>
+</html>
+
