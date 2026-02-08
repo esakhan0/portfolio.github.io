@@ -3,12 +3,59 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
   <title>Home | Esa Aslam Khan</title>
+
+  <!-- Anti-white-flash + hide content until CSS loads -->
+  <style>
+    html,body{margin:0;background:#0b0c10}
+    body.preload *{visibility:hidden}
+
+    /* Fixed background layer (cannot be clipped) */
+    .bg-fixed{
+      position:fixed; inset:0; z-index:0; pointer-events:none;
+      background:
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px),
+        radial-gradient(600px 400px at 75% 10%, rgba(139,92,246,.25), transparent 55%),
+        radial-gradient(600px 400px at 10% 20%, rgba(59,130,246,.12), transparent 55%),
+        #0b0c10;
+      background-size:38px 38px, 38px 38px, auto, auto, auto;
+      background-position:center, center, center, center, center;
+    }
+
+    /* Ensure content sits above background */
+    .wrap{position:relative; z-index:1}
+
+    /* IMPORTANT: stop any section “paint” covering the grid */
+    .hero,.section,header,footer,.heroIntro,.heroQuick{background:transparent !important}
+    .wrap::before,.wrap::after,.hero::before,.hero::after,body::before,body::after{background:transparent !important}
+
+    /* Your fade-down animation */
+    .page-animate{animation:pageFadeDown .55s cubic-bezier(.2,.8,.2,1) both}
+    @keyframes pageFadeDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+    @media (prefers-reduced-motion: reduce){.page-animate{animation:none !important}}
+  </style>
+
+  <!-- Version + CSS loader -->
+  <script src="/js/version.js"></script>
+  <script>
+    (function () {
+      const v = window.SITE_VERSION || "1";
+      const css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = `/css/style.css?v=${v}`;
+      css.onload = () => document.body.classList.remove("preload");
+      document.head.appendChild(css);
+      setTimeout(() => document.body.classList.remove("preload"), 1200);
+    })();
+  </script>
 </head>
 
+<body class="preload">
+  <div class="bg-fixed" aria-hidden="true"></div>
 
-<body>
-  <div class="wrap">
+  <div class="wrap page-animate">
     <header class="nav">
       <a class="brand" href="/" aria-label="Go to home">
         <span class="icon">💻</span>
@@ -18,8 +65,8 @@
       <nav class="navlinks" aria-label="Primary navigation">
         <a href="/" class="active">Home</a>
         <a href="/about">About</a>
-        <a href="/posts">Blog</a>
         <a href="/projects">Projects</a>
+        <a href="/certifications">Certifications</a>
       </nav>
     </header>
 
@@ -27,24 +74,13 @@
       <div class="heroIntro">
         <span class="pill">Home</span>
         <h1>Hello! <span class="wave">👋</span></h1>
-
         <p class="sub">
           I’m <b>Esa Khan</b> and I’m interested in networking, cyber security, coding, and server management.
           I do a lot of projects including modding my switch, and creating and moderating a Minecraft server.
           I am 14 years old.
-          <a class="inline-link" href="/about">
-            About me <span>→</span>
-          </a>
+          <a class="inline-link" href="/about">About me <span>→</span></a>
         </p>
       </div>
-
-      <!--<div class="heroAvatar">
-        <div class="avatarCard">
-          <div class="avatar" title="Profile">
-            <div class="initials">EK</div>
-          </div>
-        </div>
-      </div> -->
 
       <div class="heroQuick">
         <div class="card">
@@ -55,18 +91,12 @@
 
           <div class="list" style="margin-top:10px">
             <a class="item" href="/projects">
-              <div>
-                <h3>Projects</h3>
-                <div class="meta">See what I’m building</div>
-              </div>
+              <div><h3>Projects</h3><div class="meta">See what I’m building</div></div>
               <div class="arrow">›</div>
             </a>
 
-            <a class="item" href="/blog">
-              <div>
-                <h3>Blog</h3>
-                <div class="meta">Posts & updates</div>
-              </div>
+            <a class="item" href="/posts">
+              <div><h3>Blog</h3><div class="meta">Posts & updates</div></div>
               <div class="arrow">›</div>
             </a>
           </div>
@@ -76,28 +106,22 @@
 
     <section class="section">
       <div class="sectionTop">
-        <div>
-          <h2>Latest posts</h2>
-          <p>Check out my recent posts!</p>
-        </div>
-        <a class="seeAll" href="/blog/">See all</a>
+        <div><h2>Latest posts</h2><p>Check out my recent posts!</p></div>
+        <a class="seeAll" href="/posts">See all</a>
       </div>
       <div class="list" id="latestPosts"></div>
     </section>
 
     <section class="section">
       <div class="sectionTop">
-        <div>
-          <h2>Latest projects</h2>
-          <p>Many of my latest projects are down here!</p>
-        </div>
-        <a class="seeAll" href="/projects/">See all</a>
+        <div><h2>Latest projects</h2><p>Many of my latest projects are down here!</p></div>
+        <a class="seeAll" href="/projects">See all</a>
       </div>
       <div class="list" id="latestProjects"></div>
     </section>
 
     <footer class="footer">
-      <div>© <span id="year">2026 Esa Aslam Khan</span> </div>
+      <div>© <span id="year"></span> Esa Aslam Khan</div>
       <div class="footerLinks">
         <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
         <a href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
@@ -106,31 +130,14 @@
     </footer>
   </div>
 
-<script src="/js/version.js"></script>
+  <!-- Data + logic -->
+  <script>
+    const v = window.SITE_VERSION || "1";
+    document.getElementById("year").textContent = new Date().getFullYear();
 
-<script>
-  const v = window.SITE_VERSION;
-
-  // Load CSS (cache-busted)
-  const css = document.createElement("link");
-  css.rel = "stylesheet";
-  css.href = `/css/style.css?v=${v}`;
-  document.head.appendChild(css);
-
-  // Load data files
-  const posts = document.createElement("script");
-  posts.src = `/data/posts.js?v=${v}`;
-  document.body.appendChild(posts);
-
-  const projects = document.createElement("script");
-  projects.src = `/data/projects.js?v=${v}`;
-  document.body.appendChild(projects);
-
-  // Load main logic LAST
-  const main = document.createElement("script");
-  main.src = `/js/main.js?v=${v}`;
-  document.body.appendChild(main);
-</script>
-
+    const s1 = document.createElement("script"); s1.src = `/data/posts.js?v=${v}`; document.body.appendChild(s1);
+    const s2 = document.createElement("script"); s2.src = `/data/projects.js?v=${v}`; document.body.appendChild(s2);
+    const s3 = document.createElement("script"); s3.src = `/js/main.js?v=${v}`; document.body.appendChild(s3);
+  </script>
 </body>
 </html>
