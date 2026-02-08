@@ -37,40 +37,6 @@
     @media (prefers-reduced-motion: reduce){
       .fade-item{animation:none !important; opacity:1 !important; transform:none !important;}
     }
-
-    /* HERO split for CV button (no style.css edits) */
-    .heroSplit{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap: 18px;
-      align-items:start;
-    }
-    .heroRight{
-      display:flex;
-      justify-content:flex-end;
-      padding-top: 42px;
-    }
-    .cvBox{
-      display:flex;
-      flex-direction:column;
-      gap:10px;
-      align-items:flex-end;
-    }
-    .cvHint{
-      font-weight:700;
-      font-size: 13px;
-      color: rgba(255,255,255,.55);
-    }
-    .lockIcon{
-      margin-right: 8px;
-      display:inline-block;
-      transform: translateY(-1px);
-    }
-    @media (max-width: 860px){
-      .heroSplit{grid-template-columns:1fr}
-      .heroRight{justify-content:flex-start; padding-top: 10px}
-      .cvBox{align-items:flex-start}
-    }
   </style>
 
   <!-- Versioned CSS loader -->
@@ -104,34 +70,21 @@
         <a href="/">Home</a>
         <a href="/about" class="active">About</a>
         <a href="/projects">Projects</a>
-        <a href="/posts">Blog</a>
+		<a href="/posts">Blog</a>
         <a href="/certifications">Certifications</a>
       </nav>
     </header>
 
-    <!-- HERO (with CV button on the right) -->
-    <section class="pageHero heroSplit fade-item">
-      <div class="heroLeft">
-        <span class="pill">About</span>
-        <h1>Who I am</h1>
-        <p class="sub">
-          I’m a student developer with a strong interest in
-          <b>networking</b>, <b>cyber security</b>, <b>coding</b>, and
-          <b>server management</b>. I enjoy building projects that are practical,
-          well-structured, and enjoyable to use.
-        </p>
-      </div>
-
-      <div class="heroRight">
-        <div class="cvBox">
-          <!-- Uses your existing .btn style -->
-          <a class="btn" href="cv/cv.pdf" download>
-            <span class="lockIcon" aria-hidden="true">🔒</span>
-            Download CV
-          </a>
-          <div class="cvHint">Password protected</div>
-        </div>
-      </div>
+    <!-- HERO -->
+    <section class="pageHero fade-item">
+      <span class="pill">About</span>
+      <h1>Who I am</h1>
+      <p class="sub">
+        I’m a student developer with a strong interest in
+        <b>networking</b>, <b>cyber security</b>, <b>coding</b>, and
+        <b>server management</b>. I enjoy building projects that are practical,
+        well-structured, and enjoyable to use.
+      </p>
     </section>
 
     <!-- STORY -->
@@ -159,6 +112,7 @@
           <li>Responsive design (Bootstrap)</li>
           <li>Basic backend concepts & APIs</li>
           <li>Version control with Git & GitHub</li>
+
         </ul>
       </div>
 
