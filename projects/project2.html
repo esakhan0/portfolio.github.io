@@ -60,11 +60,11 @@
 <body class="preload">
   <div class="bg-fixed" aria-hidden="true"></div>
 
-  <div class="wrap page-animate">
+<div class="wrap page-animate">
     <!-- NAV -->
     <header class="nav fade-item">
       <a class="brand" href="/" aria-label="Go to home">
-        <span class="icon">💻</span>
+      <span class="icon">💻</span>
         <span>Esa Aslam Khan</span>
       </a>
 
@@ -77,69 +77,69 @@
       </nav>
     </header>
 
-    <!-- POST -->
-    <article class="card post fade-item">
-      <div class="postTop">
-        <span class="pill">Project</span>
-        <div class="postMeta">Jan 18, 2026 • 6 min read</div>
-      </div>
+  <!-- POST -->
+  <article class="card post fade-item">
+    <div class="postTop">
+      <span class="pill">Project</span>
+      <div class="postMeta">Jan 18, 2026 • 6 min read</div>
+    </div>
 
-      <h1 class="postTitle">I made a minecraft server that my friends can play on!</h1>
-      <p class="sub">
-        I wanted a minecraft server that can be hosted 24/7 and was available to my friends anytime.
-      </p>
+    <h1 class="postTitle">I made a Minecraft server that my friends can play on!</h1>
+    <p class="sub">
+      I wanted a minecraft server that can be hosted 24/7 and was available to my friends anytime.
+    </p>
 
-      <h2>Items I used!</h2>
-      <ul class="listClean">
-        <li>Small Server - THINKCENTRE i3 16GB</li>
-        <li>NEW RAM STICKS 8GB X 2</li>
-        <li>USB with Ubuntu installation media</li>
-      </ul>
+    <h2>Items I used!</h2>
+    <ul class="listClean">
+      <li>Small Server - THINKCENTRE i3 16GB</li>
+      <li>NEW RAM STICKS 8GB X 2</li>
+      <li>USB with Ubuntu installation media</li>
+    </ul>
 
-      <h2>My Experience!</h2>
-      <p>
-        I wanted to make a minecraft server with a panel for friends to play on anytime. But as usual I ran into many problems.
-        I ordered a cheap thinkcentre which I would repurpose as a server. When it arrived, it started beeping — the RAM was faulty.
-        I ordered 8GB x 2 DDR3 SODIMM sticks, installed them, and the server booted perfectly.
-      </p>
-      <p>
-        I wiped the drive, flashed Ubuntu Server 22.0 to a USB stick, and installed it. Once I had a fresh Linux terminal,
-        I installed the panel and node software. I used
-        <a href="https://www.mcsmanager.com/" target="_blank" rel="noopener"><strong><em>MCSM</em></strong></a>
-        because it was simple and hassle-free.
-      </p>
+    <h2>My Experience!</h2>
+    <p>
+      I wanted to make a minecraft server with a panel for friends to play on anytime. But as usual I ran into many problems.
+      I ordered a cheap thinkcentre which I would repurpose as a server. When it arrived, it started beeping — the RAM was faulty.
+      I ordered 8GB x 2 DDR3 SODIMM sticks, installed them, and the server booted perfectly.
+    </p>
+    <p>
+      I wiped the drive, flashed Ubuntu Server 22.0 to a USB stick, and installed it. Once I had a fresh Linux terminal,
+      I installed the panel and node software. I used
+      <a href="https://www.mcsmanager.com/" target="_blank" rel="noopener"><strong><em>MCSM</em></strong></a>
+      because it was simple and hassle-free.
+    </p>
 
-      <h2>Creating a Cloudflare tunnel</h2>
-      <p>
-        To let my friends administrate safely, I set up a Cloudflare tunnel and put the server on its own VLAN.
-        I forwarded the panel at <strong>http://localhost:3333</strong> to my domain, and tunneled TCP port <strong>25565</strong>
-        so my public IP wasn’t exposed.
-      </p>
+    <h2>Creating a Cloudflare tunnel</h2>
+    <p>
+      To let my friends administrate safely, I set up a Cloudflare tunnel and put the server on its own VLAN.
+      I forwarded the panel at <strong>http://localhost:3333</strong> to my domain, and tunneled TCP port <strong>25565</strong>
+      so my public IP wasn’t exposed.
+    </p>
 
-      <h2>Adding a node instance</h2>
-      <p>
-        MCSM installs two parts: the panel (web UI) and the node (minecraft instance). I installed a Paper 1.21.8 server from the Market tab.
-        After that, everything was ready to start up.
-      </p>
+    <h2>Adding a node instance</h2>
+    <p>
+      MCSM installs two parts: the panel (web UI) and the node (minecraft instance). I installed a Paper 1.21.8 server from the Market tab.
+      After that, everything was ready to start up.
+    </p>
 
-      <h2>Fixing the UI</h2>
-      <p>
-        The panel looked bland, so I added a custom background and designed a logo (“HALO SERVERS”).
-        Here’s what it looks like:
-      </p>
+    <h2>Fixing the UI</h2>
+    <p>
+      The panel looked bland, so I added a custom background and designed a logo (“HALO SERVERS”).
+      Here’s what it looks like:
+    </p>
 
-      <div class="heroImg">
-        <img src="/images/panel.png" alt="MCSM panel UI screenshot" loading="lazy">
-      </div>
+    <div class="heroImg">
+      <img src="/images/panel.png" alt="MCSM panel UI screenshot" loading="lazy">
+    </div>
 
-      <div class="postNav">
-        <a class="btn btnGhost" href="/projects">← Back to Projects</a>
-        <a class="btn" href="/posts/">See Blog →</a>
-      </div>
-    </article>
+    <div class="postNav">
+      <a class="btn btnGhost" href="/projects">← Back to Projects</a>
+      <a class="btn" href="/posts/">See Blog →</a>
+    </div>
+  </article>
 
-    <!-- FOOTER -->
-    <footer class="footer fade-item" id="contact">
+  <!-- FOOTER -->
+  <footer class="footer fade-item" id="contact">
       <div>© <span id="year"></span> Esa Aslam Khan</div>
       <div class="footerLinks">
         <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
