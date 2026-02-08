@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Certifications | Esa Aslam Khan</title>
+
+  <style>
+    html,body{margin:0;background:#0b0c10}
+    body.preload *{visibility:hidden}
+
+    .bg-fixed{
+      position:fixed; inset:0; z-index:0; pointer-events:none;
+      background:
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px),
+        radial-gradient(600px 400px at 75% 10%, rgba(139,92,246,.25), transparent 55%),
+        radial-gradient(600px 400px at 10% 20%, rgba(59,130,246,.12), transparent 55%),
+        #0b0c10;
+      background-size:38px 38px, 38px 38px, auto, auto, auto;
+      background-position:center, center, center, center, center;
+    }
+    .wrap{position:relative; z-index:1}
+
+    /* One-by-one fade */
+    .page-animate{ --delay-step: 160ms; }
+    .fade-item{
+      opacity:0;
+      transform: translateY(-16px);
+      animation: fadeDown 1.15s cubic-bezier(.2,.8,.2,1) forwards;
+      animation-delay: calc(var(--i, 0) * var(--delay-step));
+      will-change: transform, opacity;
+    }
+    @keyframes fadeDown{ to{opacity:1; transform:translateY(0)} }
+    @media (prefers-reduced-motion: reduce){
+      .fade-item{animation:none !important; opacity:1 !important; transform:none !important;}
+    }
+
+    /* Tabs */
+    .barTabs{
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display:flex;
+      gap:10px;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(10px);
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .barTabs::-webkit-scrollbar{height:6px}
+    .barTabs::-webkit-scrollbar-thumb{background: rgba(181,124,255,.22); border-radius:999px}
+
+    .barTab{
+      flex:0 0 auto;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.78);
+      font-weight: 900;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .barTab.active{
+      border-color: rgba(181,124,255,.55);
+      background: rgba(181,124,255,.16);
+      color: rgba(255,255,255,.92);
+    }
+
+    /* Tag pill + meta row */
+    .tagPill{
+      display:inline-flex;
+      align-items:center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(181,124,255,.35);
+      background: rgba(181,124,255,.12);
+      color: rgba(255,255,255,.88);
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: .2px;
+    }
+    .certMetaRow{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      align-items:center;
+      margin-top: 8px;
+    }
+
+    /* Fullscreen viewer */
+    .lightbox{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.92);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:999;
+      padding: 18px;
+    }
+    .lightbox.active{display:flex}
+    .lightbox img{
+      max-width: 96vw;
+      max-height: 88vh;
+      border-radius: 16px;
+      box-shadow: 0 30px 90px rgba(0,0,0,.6);
+    }
+    .lightboxClose{
+      position:fixed;
+      top: 14px;
+      right: 14px;
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.12);
+      color: #fff;
+      font-size: 26px;
+      font-weight: 900;
+      cursor:pointer;
+      display:grid;
+      place-items:center;
+      backdrop-filter: blur(8px);
+    }
+    .lightboxClose:hover{transform: translateY(-1px)}
+  </style>
+
+  <!-- Version + CSS loader -->
+  <script src="/js/version.js"></script>
+  <script>
+    (function () {
+      const v = window.SITE_VERSION || "1";
+      const css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = `/css/style.css?v=${v}`;
+      css.onload = () => document.body.classList.remove("preload");
+      document.head.appendChild(css);
+      setTimeout(() => document.body.classList.remove("preload"), 1200);
+    })();
+  </script>
+</head>
+
+<body class="preload">
+  <div class="bg-fixed" aria-hidden="true"></div>
+
+  <div class="wrap page-animate">
+    <header class="nav fade-item">
+      <a class="brand" href="/" aria-label="Go to home">
+        <span class="icon">💻</span>
+        <span>Esa Aslam Khan</span>
+      </a>
+
+      <nav class="navlinks" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/projects">Projects</a>
+        <a href="/posts">Blog</a>
+        <a href="/certifications" class="active">Certifications</a>
+      </nav>
+    </header>
+
+    <section class="pageHero fade-item">
+      <span class="pill">Certifications</span>
+      <h1>My certificates</h1>
+      <p class="sub">School, coding, networking — organised in one place.</p>
+    </section>
+
+    <!-- Tabs (auto-built from certs.js) -->
+    <section class="section fade-item">
+      <div class="barTabs" id="tabs" role="tablist" aria-label="Certification categories"></div>
+    </section>
+
+    <!-- Sections (auto-built) -->
+    <div id="sections"></div>
+
+    <footer class="footer fade-item">
+      <div>© <span id="year"></span> Esa Aslam Khan</div>
+      <div class="footerLinks">
+        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:you@example.com">Email</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Fullscreen image viewer -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightboxClose" id="lightboxClose" aria-label="Close">×</button>
+    <img id="lightboxImg" alt="Certificate">
+  </div>
+
+  <!-- Load cert data -->
+  <script src="/data/certs.js"></script>
+
+  <script>
+    // ---- Basic setup ----
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.querySelectorAll(".fade-item").forEach((el, i) => el.style.setProperty("--i", i));
+
+    const TAGS = window.CERT_TAGS || [
+      { key: "all", label: "All" },
+      { key: "school", label: "School" },
+      { key: "coding", label: "Coding" },
+      { key: "networking", label: "Networking" },
+      { key: "other", label: "Other" }
+    ];
+    const CERTS = Array.isArray(window.CERTS) ? window.CERTS : [];
+
+    // Sort newest first
+    CERTS.sort((a,b) => new Date(b.date) - new Date(a.date));
+
+    const tabsEl = document.getElementById("tabs");
+    const sectionsEl = document.getElementById("sections");
+
+    // ---- Lightbox ----
+    const lb = document.getElementById("lightbox");
+    const lbImg = document.getElementById("lightboxImg");
+    const lbClose = document.getElementById("lightboxClose");
+
+    function openLightbox(src, alt){
+      lbImg.src = src;
+      lbImg.alt = alt || "Certificate";
+      lb.classList.add("active");
+      lb.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+    function closeLightbox(){
+      lb.classList.remove("active");
+      lb.setAttribute("aria-hidden", "true");
+      lbImg.src = "";
+      document.body.style.overflow = "";
+    }
+    lbClose.addEventListener("click", closeLightbox);
+    lb.addEventListener("click", (e) => { if(e.target === lb) closeLightbox(); });
+    window.addEventListener("keydown", (e) => { if(e.key === "Escape") closeLightbox(); });
+
+    // ---- Render helpers ----
+    function esc(s){
+      return String(s ?? "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function renderItem(cert){
+      const title = esc(cert.title);
+      const issuer = esc(cert.issuer || "Unknown issuer");
+      const tag = esc(cert.tag || "other");
+      const date = esc(cert.date || "");
+      const img = esc(cert.image || "");
+
+      const a = document.createElement("a");
+      a.className = "item";
+      a.href = "#"; // stays on same page; opens lightbox
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (!cert.image) return;
+        openLightbox(cert.image, cert.title);
+      });
+
+      a.innerHTML = `
+        <div>
+          <h3>${title}</h3>
+          <div class="certMetaRow">
+            <span class="tagPill">${tag.charAt(0).toUpperCase() + tag.slice(1)}</span>
+            <div class="meta">${date} • ${issuer}</div>
+          </div>
+        </div>
+        <div class="arrow">›</div>
+      `;
+      return a;
+    }
+
+    function renderSection(tagKey, label){
+      const section = document.createElement("section");
+      section.className = "section fade-item";
+      section.id = tagKey;
+
+      const title = tagKey === "all" ? "All certificates" : label;
+      const desc = tagKey === "all" ? "Newest first" : "Newest first";
+
+      section.innerHTML = `
+        <div class="sectionTop">
+          <div>
+            <h2>${esc(title)}</h2>
+            <p>${esc(desc)}</p>
+          </div>
+        </div>
+        <div class="list"></div>
+      `;
+
+      const list = section.querySelector(".list");
+      const filtered = (tagKey === "all")
+        ? CERTS
+        : CERTS.filter(c => (c.tag || "other") === tagKey);
+
+      if (!filtered.length){
+        const empty = document.createElement("div");
+        empty.className = "card";
+        empty.style.marginTop = "12px";
+        empty.innerHTML = `<div class="meta">No certificates in this category yet.</div>`;
+        list.appendChild(empty);
+      } else {
+        filtered.forEach(c => list.appendChild(renderItem(c)));
+      }
+
+      return section;
+    }
+
+    // ---- Build tabs from TAGS ----
+    function setActive(btn){
+      tabsEl.querySelectorAll(".barTab").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+    }
+
+    TAGS.forEach((t, idx) => {
+      const btn = document.createElement("button");
+      btn.className = "barTab" + (idx === 0 ? " active" : "");
+      btn.type = "button";
+      btn.dataset.target = "#" + t.key;
+      btn.textContent = t.label;
+
+      btn.addEventListener("click", () => {
+        const target = document.querySelector(btn.dataset.target);
+        if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+        setActive(btn);
+      });
+
+      tabsEl.appendChild(btn);
+    });
+
+    // ---- Build sections from TAGS ----
+    sectionsEl.innerHTML = "";
+    TAGS.forEach(t => sectionsEl.appendChild(renderSection(t.key, t.label)));
+
+    // Stagger fade order again (because we added sections dynamically)
+    document.querySelectorAll(".fade-item").forEach((el, i) => el.style.setProperty("--i", i));
+
+    // ---- Auto highlight active tab while scrolling ----
+    const tabButtons = [...tabsEl.querySelectorAll(".barTab")];
+    const observedSections = TAGS.map(t => document.getElementById(t.key)).filter(Boolean);
+
+    const obs = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a,b)=> b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+
+      const id = "#" + visible.target.id;
+      const btn = tabButtons.find(b => b.dataset.target === id);
+      if (btn) setActive(btn);
+    }, { threshold: [0.25, 0.4, 0.6] });
+
+    observedSections.forEach(s => obs.observe(s));
+  </script>
+</body>
+</html>
+
