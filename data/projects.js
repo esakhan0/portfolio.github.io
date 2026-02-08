@@ -1,9 +1,9 @@
 // data/projects.js
 window.PROJECTS = [
   {
-    title: "I built a portfolio using Dreamweaver",
+    title: "Setting up ONVIF cameras and adding them to Unifi Protect.",
     date: "2026-01-22",
-    excerpt: "Click to learn more on how I created this very site!",
+    excerpt: "Click here to see how I made my home security system",
     url: "projects/project1",
     stack: ["HTML", "CSS", "JS"],
     source: "https://github.com/",

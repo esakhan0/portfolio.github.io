@@ -84,47 +84,26 @@
         <div class="postMeta">Jan 22, 2026 • 5 min read</div>
       </div>
 
-      <h1 class="postTitle">I built a portfolio using Dreamweaver</h1>
+      <h1 class="postTitle">Setting up ONVIF cameras and adding them to Unifi Protect.&nbsp; &nbsp; &nbsp;</h1>
       <p class="sub">
-        I wanted a clean portfolio that loads fast, works on GitHub Pages, and is easy to update.
-      </p>
+      This projects shows how I integrated my Hikvision Cameras into Unifi Protect.&nbsp; &nbsp; &nbsp; &nbsp; </p>
 
-      <h2>What I focused on</h2>
+      <h2>What I used</h2>
       <ul class="listClean">
-        <li>Consistent design system</li>
-        <li>Clean file structure</li>
-        <li>Fixed background</li>
-        <li>Premium feel</li>
-        <li>Zero cost</li>
+        <li>Unifi Cloudkey Gen 2+&nbsp;</li>
       </ul>
 
-      <h2>Biggest lesson</h2>
-      <p>
-        Consistency makes a site instantly professional. One shared style file controlled fonts,
-        layout, spacing, and background behaviour across every page.
-      </p>
-
-      <h2>Experience with Dreamweaver</h2>
-      <p>
-        Dreamweaver worked perfectly with GitHub Pages. Using git pull and git push let me
-        sync changes across machines easily.
-      </p>
-
-      <div class="media">
-        <img src="/images/dreamweaverimage.png" alt="Dreamweaver screenshot" loading="lazy">
+      <h2>What I did to integrate the cameras&nbsp; &nbsp;&nbsp;</h2>
+      <p> I wanted to integrate Hikvision cameras into the Unifi Protect network so I began researching on how this is possible. I wanted to switch over to Unifi Protect because the UI is very nice and easy to navigate. The Hikvision app is also really bad so I wanted it to be easy to view our security cameras for my parents. To setup ONVIF mode for the cameras I had to unplug the Ethernet ports going into my DVR and move it into a POE Switch. It powered all 4 of my cameras and allowed me to expose the cameras to the main network. Now to create a seamless security system I wanted to have a backup DVR (if main was ever destroyed) and a Main DVR. This prevents intruders from destroying camera footage. I also hid the CloudKey Gen 2+ on my desk as it would look like a different device.</p>
+      <p>Now, to add a backup and main dvr, I connected the Hikvision DVR to the Hikvision Cameras via ONVIF which now required a password and username. Now I had to setup my new Cloud Key by creating and linking the box to my Unifi Account which binds the device so even if its stolen it is not usable to the person. Now I had to install the Protect application which took about 10 mins. After that I could now format the HDD so it would be ready to upload video footage 247 to it. After linking the cameras to the Cloud Key I had to setup motion detection and since the cameras are 3rd party I had to find my own way to create motion notifications.</p>
+      <p>Since my cameras are 3rd party I used Home Assistant to connect my ONVIF cameras   and then check for motion detection via the cameras sensors. I then created a automation that would send an webhook to my Unifi Cloudkey that would send a motion alert from the app. I had to do this for each camera. That's how I created a robust smart security system that I could built on to create a Smart Home. Take a look below to see how nice the dashboard is.&nbsp; Thank you for reading ONE OF MANY projects!&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div class="media">
+      <img src="../images/unifiprotect.png" alt="Dreamweaver screenshot" loading="lazy">
       </div>
-
-      <h2>Next upgrades</h2>
-      <ul class="listClean">
-        <li>Move to a VPS</li>
-        <li>Add PHP scripts & email alerts</li>
-        <li>Use a custom domain</li>
-        <li>Add more projects</li>
-      </ul>
-
-      <div class="postNav">
-        <a class="btn btnGhost" href="/projects">← Back to Projects</a>
-        <a class="btn" href="/posts/">See Blog →</a>
+<div class="postNav">
+      <a class="btn btnGhost" href="/projects">← Back to Projects</a>
       </div>
     </article>
 

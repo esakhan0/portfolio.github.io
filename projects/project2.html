@@ -91,42 +91,27 @@
 
     <h2>Items I used!</h2>
     <ul class="listClean">
-      <li>Small Server - THINKCENTRE i3 16GB</li>
-      <li>NEW RAM STICKS 8GB X 2</li>
-      <li>USB with Ubuntu installation media</li>
+      <li>Mini PC&nbsp;</li>
+      <li>Sodimm Ram 8GB x 2&nbsp;</li>
+      <li>USB - Ubuntu .iso&nbsp;</li>
+      <li>MCSM - software&nbsp;</li>
     </ul>
 
-    <h2>My Experience!</h2>
+    <h2>Problems &amp; Solutions</h2>
     <p>
       I wanted to make a minecraft server with a panel for friends to play on anytime. But as usual I ran into many problems.
-      I ordered a cheap thinkcentre which I would repurpose as a server. When it arrived, it started beeping — the RAM was faulty.
-      I ordered 8GB x 2 DDR3 SODIMM sticks, installed them, and the server booted perfectly.
-    </p>
+      I ordered a cheap Lenovo Thinkcentre which I would repurpose as a server. When it arrived, I ran into a problem, it started beeping when I tried to start it up and after researching I found out it was a RAM issue. After opening the computer up, I found that the RAM was faulty so I bought 2 sticks or 8GB of SODIMM RAM and once it arrived I quickly ran to go apply it. &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+    <p> &nbsp;After I applied the RAM to the computer, I started it up and it didn't even beep and the storage led started to blink. It then booted right into windows (It came with windows installed)! Now I was able to install Ubuntu 24.04.3 LTS by using a USB stick and adding a .iso file to install ubuntu. I put the USB stick in the the mini computer but it still booted into windows. So I went into the computers BIOS and selected the boot order to be my USB stick first and then the HDD. Then finally it booted right into the Ubuntu Installation Menu where there I could install Ubuntu on my HDD permanently.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+<h2>After getting Ubuntu ready&nbsp;</h2>
+    <p> After installing Ubuntu successfully I researched on some popular minecraft server management softwares available. After many hours I found a really nice software with beautiful UI and a good system to work with. It was called MCSM. MCSM stands for Minecraft Server Manager and it was quick and easy to install it as a SystemCTL service. After installing I was able to access the web ui at my servers address on port&nbsp;23333. After that I created a user for myself and installed the package for the Minecraft Version 1.21.4 Paper.&nbsp;</p>
+    <p>1.21.4 Paper is a version on Minecraft that support plugins (allow the game to function differently without players downloading anything) and once installed I could boot it up. I used a variety of plugins such as TAB, CMI, etc. These plugins would help me to make the server look nice and professional. I also used Multiverse-Core (Plugin) to help me to make different worlds running on one server so that I could create a spawn world and the main game world.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
+<h2>Making it easy to access to others</h2>
     <p>
-      I wiped the drive, flashed Ubuntu Server 22.0 to a USB stick, and installed it. Once I had a fresh Linux terminal,
-      I installed the panel and node software. I used
-      <a href="https://www.mcsmanager.com/" target="_blank" rel="noopener"><strong><em>MCSM</em></strong></a>
-      because it was simple and hassle-free.
-    </p>
+    To allow friends to moderate and manage the server with me, I installed Cloudflare Tunnels on my mini computer which would essentially authorise&nbsp; my friends to type a URL in google and access the panel. This would allow me to forward ports without exposing through my network. Since I was using Cloudflare tunnels to forward my Game (Port 25565) and my Panel the control the server (Port 23333) it would mean that my network would not be vunreable to attacks such as DDOS because Cloudflare proxies my tunnels and also helps to prevent DDOS attacks by blocking IP's with mass amount of requests to the server. Also to increase server security I used VLAN'S to isolate and protect my other devices from my server. This helped extensively and gave me an extra sense of reassurance and used containers to isolate my minecraft instance from the main server.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </p>
 
-    <h2>Creating a Cloudflare tunnel</h2>
+    <h2>&nbsp;Finishing Touches</h2>
     <p>
-      To let my friends administrate safely, I set up a Cloudflare tunnel and put the server on its own VLAN.
-      I forwarded the panel at <strong>http://localhost:3333</strong> to my domain, and tunneled TCP port <strong>25565</strong>
-      so my public IP wasn’t exposed.
-    </p>
-
-    <h2>Adding a node instance</h2>
-    <p>
-      MCSM installs two parts: the panel (web UI) and the node (minecraft instance). I installed a Paper 1.21.8 server from the Market tab.
-      After that, everything was ready to start up.
-    </p>
-
-    <h2>Fixing the UI</h2>
-    <p>
-      The panel looked bland, so I added a custom background and designed a logo (“HALO SERVERS”).
-      Here’s what it looks like:
-    </p>
+    &nbsp;After finishing the Tunnels, I created different users for my friends so they could log on, but I felt that my panel was a bit bland. So I created a blurred background for the panel and created a logo that spelt "HijoSMP" and gave the panel a sense of personalization to it. You can see below and see how my panel came out! Thank you for reading one of many projects!&nbsp; &nbsp; &nbsp;&nbsp;</p>
 
     <div class="heroImg">
       <img src="/images/panel.png" alt="MCSM panel UI screenshot" loading="lazy">
@@ -134,7 +119,6 @@
 
     <div class="postNav">
       <a class="btn btnGhost" href="/projects">← Back to Projects</a>
-      <a class="btn" href="/posts/">See Blog →</a>
     </div>
   </article>
 
