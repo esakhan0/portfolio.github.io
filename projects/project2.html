@@ -3,71 +3,144 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="color-scheme" content="dark" />
   <title>I made a minecraft server!</title>
+
+  <!-- Stop white flash + hide until CSS loads -->
+  <style>
+    html,body{margin:0;background:#0b0c10}
+    body.preload *{visibility:hidden}
+
+    /* Fixed background layer (never clips) */
+    .bg-fixed{
+      position:fixed; inset:0; z-index:0; pointer-events:none;
+      background:
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px),
+        radial-gradient(600px 400px at 75% 10%, rgba(139,92,246,.25), transparent 55%),
+        radial-gradient(600px 400px at 10% 20%, rgba(59,130,246,.12), transparent 55%),
+        #0b0c10;
+      background-size:38px 38px, 38px 38px, auto, auto, auto;
+      background-position:center, center, center, center, center;
+    }
+    .wrap{position:relative; z-index:1}
+
+    /* Slow stagger fade in */
+    .page-animate{ --delay-step: 170ms; }
+    .fade-item{
+      opacity:0;
+      transform: translateY(-16px);
+      animation: fadeDown 1.25s cubic-bezier(.2,.8,.2,1) forwards;
+      animation-delay: calc(var(--i, 0) * var(--delay-step));
+      will-change: transform, opacity;
+    }
+    @keyframes fadeDown{ to{opacity:1; transform:translateY(0)} }
+
+    @media (prefers-reduced-motion: reduce){
+      .fade-item{animation:none !important; opacity:1 !important; transform:none !important;}
+    }
+  </style>
+
+  <!-- Version + CSS loader (cache-busted) -->
+  <script src="/js/version.js"></script>
+  <script>
+    (function () {
+      const v = window.SITE_VERSION || "1";
+      const css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = `/css/style.css?v=${v}`;
+      css.onload = () => document.body.classList.remove("preload");
+      document.head.appendChild(css);
+      setTimeout(() => document.body.classList.remove("preload"), 1200);
+    })();
+  </script>
 </head>
 
-<body>
-  <div class="wrap">
+<body class="preload">
+  <div class="bg-fixed" aria-hidden="true"></div>
+
+  <div class="wrap page-animate">
     <!-- NAV -->
-    <header class="nav">
+    <header class="nav fade-item">
       <a class="brand" href="/" aria-label="Go to home">
-      <span class="icon">💻</span>
-        <span>Esa Aslam Khan&nbsp;</span>
+        <span class="icon">💻</span>
+        <span>Esa Aslam Khan</span>
       </a>
 
       <nav class="navlinks" aria-label="Primary navigation">
         <a href="/">Home</a>
         <a href="/about">About</a>
-		<a href="/projects" class="active">Projects</a>
-		<a href="/certifications">Certifications</a>
+        <a href="/projects" class="active">Projects</a>
+        <a href="/posts">Blog</a>
+        <a href="/certifications">Certifications</a>
       </nav>
     </header>
 
     <!-- POST -->
-    <article class="card post">
-		
+    <article class="card post fade-item">
       <div class="postTop">
         <span class="pill">Project</span>
         <div class="postMeta">Jan 18, 2026 • 6 min read</div>
       </div>
 
-      <h1 class="postTitle">I made a minecraft server that my friends can play on!&nbsp;&nbsp;</h1>
+      <h1 class="postTitle">I made a minecraft server that my friends can play on!</h1>
       <p class="sub">
         I wanted a minecraft server that can be hosted 24/7 and was available to my friends anytime.
       </p>
 
-      <h2>Items I used!&nbsp;</h2>
+      <h2>Items I used!</h2>
       <ul class="listClean">
-        <li>Small Server - THINKCENTRE i3 16GB&nbsp; &nbsp;</li>
-        <li>NEW RAM STICKS 8GB X 2&nbsp;&nbsp;</li>
-        <li>USB with Ubuntu installation media&nbsp;&nbsp;</li>
+        <li>Small Server - THINKCENTRE i3 16GB</li>
+        <li>NEW RAM STICKS 8GB X 2</li>
+        <li>USB with Ubuntu installation media</li>
       </ul>
 
       <h2>My Experience!</h2>
       <p>
-        I wanted to make a minecraft server with a panel for friends to play on anytime But as usual I ran ito many problem. I ordered a cheap thinkcentre which I would repurpose as a server. As the server arrived I booted it but came to a stop as the server starting beeping. I researched and came to a stop where I found out that the ram that came with the server was faulty. So I decided to order 8GB x 2 DDR3 SODIMM ram sticks to fix the problem. I installed the RAM by opening the enclousure of the server and removing and reinstalling the new sticks. After that the server booted up perfectly into windows (software it came with when bought). I then reset the hard drive and got ready to flash the Ubuntu 22.0 Server .iso file to my USB stick. After inserting I selected the startup order to my USB stick and then booted into Ubuntu Installation Menu where I installed the OS to my hard drive. Once complete I now had a fresh linux terminal ready to install my panel and node software! I chose the <a href="https://www.mcsmanager.com/"><strong><em>MCSM</em></strong></a> for ease and 0% hassle. I installed it using the command <strong><em>"sudo su -c "wget -qO- https://script.mcsmanager.com/setup.sh | bash"</em></strong> &nbsp;and this easily installed the software. Then I setup the administrator user by creating a hash for the <em><strong><a href="https://www.mcsmanager.com/">MCSM</a></strong></em> password. Once complete the web server booted up on port 3333. &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;<strong><a href="https://www.mcsmanager.com/">&nbsp;</a></strong>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; </p>
-      
-      <h2>Creating Cloudflare Tunnel</h2>
-      <p> &nbsp;To allow my friends to administrate on the server I set up a tunnel with <strong><a href="https://www.cloudflare.com/en-gb/"><em>Cloudflare</em></a></strong> to avoid being attacked and also isolated my server to a VLAN within my network. Adding a cloudflare tunnel was straightforward, I only had to paste a command that created and installed a tunnel on my serve. This tunnel was set to <strong>http://localhost:3333 </strong>so the <strong><a href="https://www.mcsmanager.com/"><em>MCSM</em></a></strong> webserver would be forwarded to my domain. I also added one more tunnel that used the tcp protocol (minecraft server protocol for java) that would tunnel port 25565 across to players so that my public ip adress would not be exposed. Once complete all I had to do was create my minecraft node instance!&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</p>
-      
-      <h2>Adding a node instance&nbsp;</h2>
-      <p> MCSM installs two different things, a node, and the panel. The panel is the webserver that is broadcasted over my domain to the internet and the node is the actual minecraft instance that allows players to join. Creating a node was very easy, I just went to the Market tab and selected minecraft then the Paper 1.21.8 package. This quickly installed my server and it was ready to startup. The node and panel has been all set up now!&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
-      
-      <h2>Fixing the UI&nbsp;&nbsp;</h2>
-      <p> The panel was looking a bit bland so I added my own custom background by going to settings and adding mountain images from in game. I also designed a logo that spelled HALO SERVERS since my home network is called HaloGrid and placed it as the main logo that you press to go to the home page! Have a look below and rate the ui!&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
-<div class="heroImg">
-  <img src="/images/panel.png" alt="panel.png" loading="lazy">
-		</div>     
-<div class="postNav">
-      <a class="btn btnGhost" href="/projects">← Back to Projects</a>
-      <a class="btn" href="/posts/">See Blog →</a>
+        I wanted to make a minecraft server with a panel for friends to play on anytime. But as usual I ran into many problems.
+        I ordered a cheap thinkcentre which I would repurpose as a server. When it arrived, it started beeping — the RAM was faulty.
+        I ordered 8GB x 2 DDR3 SODIMM sticks, installed them, and the server booted perfectly.
+      </p>
+      <p>
+        I wiped the drive, flashed Ubuntu Server 22.0 to a USB stick, and installed it. Once I had a fresh Linux terminal,
+        I installed the panel and node software. I used
+        <a href="https://www.mcsmanager.com/" target="_blank" rel="noopener"><strong><em>MCSM</em></strong></a>
+        because it was simple and hassle-free.
+      </p>
+
+      <h2>Creating a Cloudflare tunnel</h2>
+      <p>
+        To let my friends administrate safely, I set up a Cloudflare tunnel and put the server on its own VLAN.
+        I forwarded the panel at <strong>http://localhost:3333</strong> to my domain, and tunneled TCP port <strong>25565</strong>
+        so my public IP wasn’t exposed.
+      </p>
+
+      <h2>Adding a node instance</h2>
+      <p>
+        MCSM installs two parts: the panel (web UI) and the node (minecraft instance). I installed a Paper 1.21.8 server from the Market tab.
+        After that, everything was ready to start up.
+      </p>
+
+      <h2>Fixing the UI</h2>
+      <p>
+        The panel looked bland, so I added a custom background and designed a logo (“HALO SERVERS”).
+        Here’s what it looks like:
+      </p>
+
+      <div class="heroImg">
+        <img src="/images/panel.png" alt="MCSM panel UI screenshot" loading="lazy">
+      </div>
+
+      <div class="postNav">
+        <a class="btn btnGhost" href="/projects">← Back to Projects</a>
+        <a class="btn" href="/posts/">See Blog →</a>
       </div>
     </article>
 
     <!-- FOOTER -->
-    <footer class="footer" id="contact">
-      <div>© <span id="year">2026 Esa Aslam Khan</span> </div>
+    <footer class="footer fade-item" id="contact">
+      <div>© <span id="year"></span> Esa Aslam Khan</div>
       <div class="footerLinks">
         <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
         <a href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
@@ -76,32 +149,16 @@
     </footer>
   </div>
 
-  <script src="/js/version.js"></script>
+  <script>
+    // Year + stagger ordering
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.querySelectorAll(".fade-item").forEach((el,i)=>el.style.setProperty("--i",i));
 
-<script>
-  const v = window.SITE_VERSION;
-
-  // Load CSS (cache-busted)
-  const css = document.createElement("link");
-  css.rel = "stylesheet";
-  css.href = `/css/style.css?v=${v}`;
-  document.head.appendChild(css);
-
-  // Load data files
-  const posts = document.createElement("script");
-  posts.src = `/data/posts.js?v=${v}`;
-  document.body.appendChild(posts);
-
-  const projects = document.createElement("script");
-  projects.src = `/data/projects.js?v=${v}`;
-  document.body.appendChild(projects);
-
-  // Load main logic LAST
-  const main = document.createElement("script");
-  main.src = `/js/main.js?v=${v}`;
-  document.body.appendChild(main);
-</script>
-
+    // Load data + main logic (cache-busted)
+    const v = window.SITE_VERSION || "1";
+    const posts = document.createElement("script"); posts.src = `/data/posts.js?v=${v}`; document.body.appendChild(posts);
+    const projects = document.createElement("script"); projects.src = `/data/projects.js?v=${v}`; document.body.appendChild(projects);
+    const main = document.createElement("script"); main.src = `/js/main.js?v=${v}`; document.body.appendChild(main);
+  </script>
 </body>
 </html>
-

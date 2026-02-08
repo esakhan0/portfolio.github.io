@@ -3,70 +3,123 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>I built a portfolio in a day </title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="color-scheme" content="dark" />
+  <title>I built a portfolio in a day</title>
+
+  <!-- Kill white flash -->
+  <style>
+    html,body{margin:0;background:#0b0c10}
+    body.preload *{visibility:hidden}
+
+    /* Fixed background */
+    .bg-fixed{
+      position:fixed; inset:0; z-index:0; pointer-events:none;
+      background:
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px),
+        radial-gradient(600px 400px at 75% 10%, rgba(139,92,246,.25), transparent 55%),
+        radial-gradient(600px 400px at 10% 20%, rgba(59,130,246,.12), transparent 55%),
+        #0b0c10;
+      background-size:38px 38px,38px 38px,auto,auto,auto;
+      background-position:center;
+    }
+    .wrap{position:relative; z-index:1}
+
+    /* Staggered fade */
+    .page-animate{--delay-step:160ms}
+    .fade-item{
+      opacity:0;
+      transform:translateY(-16px);
+      animation:fadeDown 1.15s cubic-bezier(.2,.8,.2,1) forwards;
+      animation-delay:calc(var(--i,0)*var(--delay-step));
+    }
+    @keyframes fadeDown{to{opacity:1;transform:none}}
+
+    @media (prefers-reduced-motion: reduce){
+      .fade-item{animation:none!important;opacity:1!important;transform:none!important}
+    }
+  </style>
+
+  <!-- Versioned CSS loader -->
+  <script src="/js/version.js"></script>
+  <script>
+    (function(){
+      const v = window.SITE_VERSION || "1";
+      const css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = `/css/style.css?v=${v}`;
+      css.onload = () => document.body.classList.remove("preload");
+      document.head.appendChild(css);
+      setTimeout(()=>document.body.classList.remove("preload"),1200);
+    })();
+  </script>
 </head>
 
-<body>
-  <div class="wrap">
+<body class="preload">
+  <div class="bg-fixed"></div>
+
+  <div class="wrap page-animate">
+
     <!-- NAV -->
-    <header class="nav">
-      <a class="brand" href="/" aria-label="Go to home">
-      <span class="icon">💻</span>
-        <span>Esa Aslam Khan&nbsp;</span>
+    <header class="nav fade-item">
+      <a class="brand" href="/">
+        <span class="icon">💻</span>
+        <span>Esa Aslam Khan</span>
       </a>
 
       <nav class="navlinks" aria-label="Primary navigation">
         <a href="/">Home</a>
         <a href="/about">About</a>
-		<a href="/projects" class="active">Projects</a>
-		<a href="/certifications">Certifications</a>
+        <a href="/projects" class="active">Projects</a>
+        <a href="/posts">Blog</a>
+        <a href="/certifications">Certifications</a>
       </nav>
     </header>
 
     <!-- POST -->
-    <article class="card post">
-		
+    <article class="card post fade-item">
       <div class="postTop">
         <span class="pill">Project</span>
         <div class="postMeta">Jan 22, 2026 • 5 min read</div>
       </div>
 
-      <h1 class="postTitle">I built a portfolio using Dreamweaver&nbsp; &nbsp; &nbsp;&nbsp;</h1>
+      <h1 class="postTitle">I built a portfolio using Dreamweaver</h1>
       <p class="sub">
-        I wanted a clean portfolio that loads fast, works on GitHub Pages, and is easy to update. Here is what I did...
+        I wanted a clean portfolio that loads fast, works on GitHub Pages, and is easy to update.
       </p>
 
-      <h2>What I focused on&nbsp;</h2>
+      <h2>What I focused on</h2>
       <ul class="listClean">
-        <li>&nbsp;Simple design with a consistent style system</li>
-        <li>&nbsp;Clean file structure (pages, posts, projects)</li>
-        <li>&nbsp;Fixed background that doesn’t scroll with content</li>
-        <li>&nbsp;Making the site seem clean and premium</li>
-        <li>&nbsp;Making it at no cost to me</li>
+        <li>Consistent design system</li>
+        <li>Clean file structure</li>
+        <li>Fixed background</li>
+        <li>Premium feel</li>
+        <li>Zero cost</li>
       </ul>
 
       <h2>Biggest lesson</h2>
       <p>
-        The biggest win is keeping everything consistent — same fonts, spacing, cards, and colours across pages.
-        That makes your site look professional instantly. I used styles to syncronize a single theme across all the pages. This style made the background not move with scroll, applied fonts to certain section of my site and made it feel premium while being no cost to me.&nbsp;&nbsp; </p>
-      
-      <h2>Experience with Dreamweaver&nbsp;</h2>
-      <p> My experience with Dreamweaver was exceptional, I used Github pages to host this site and it easily connected seamlessly to allow me to add and save anything easily to my site. I used git pull and git push to push and pull data from my site. This allowed me to make changes and grab new changes from other machines. Check out my images below that show the dreamweaver software.&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </p>
-		<div class="media">
-  <img
-    src="/images/dreamweaverimage.png"
-    alt="Minecraft server panel screenshot"
-    loading="lazy"
-  >
-</div>
+        Consistency makes a site instantly professional. One shared style file controlled fonts,
+        layout, spacing, and background behaviour across every page.
+      </p>
+
+      <h2>Experience with Dreamweaver</h2>
+      <p>
+        Dreamweaver worked perfectly with GitHub Pages. Using git pull and git push let me
+        sync changes across machines easily.
+      </p>
+
+      <div class="media">
+        <img src="/images/dreamweaverimage.png" alt="Dreamweaver screenshot" loading="lazy">
+      </div>
 
       <h2>Next upgrades</h2>
       <ul class="listClean">
-        <li>Upgrading my site and moving across to a vps</li>
-        <li>Adding PHP scripts and custom email reminders about new posts and projects&nbsp; &nbsp;&nbsp;</li>
-<li>&nbsp;Adding a new domain like "esaaslamkhan.com"&nbsp;</li>
-        <li>&nbsp;Adding many new projects to make employers interested!</li>
+        <li>Move to a VPS</li>
+        <li>Add PHP scripts & email alerts</li>
+        <li>Use a custom domain</li>
+        <li>Add more projects</li>
       </ul>
 
       <div class="postNav">
@@ -76,42 +129,27 @@
     </article>
 
     <!-- FOOTER -->
-    <footer class="footer" id="contact">
-      <div>© <span id="year">2026 Esa Aslam Khan</span> </div>
+    <footer class="footer fade-item">
+      <div>© <span id="year"></span> Esa Aslam Khan</div>
       <div class="footerLinks">
-        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
         <a href="mailto:you@example.com">Email</a>
       </div>
     </footer>
   </div>
 
-  <script src="/js/version.js"></script>
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.querySelectorAll(".fade-item").forEach((el,i)=>el.style.setProperty("--i",i));
 
-<script>
-  const v = window.SITE_VERSION;
-
-  // Load CSS (cache-busted)
-  const css = document.createElement("link");
-  css.rel = "stylesheet";
-  css.href = `/css/style.css?v=${v}`;
-  document.head.appendChild(css);
-
-  // Load data files
-  const posts = document.createElement("script");
-  posts.src = `/data/posts.js?v=${v}`;
-  document.body.appendChild(posts);
-
-  const projects = document.createElement("script");
-  projects.src = `/data/projects.js?v=${v}`;
-  document.body.appendChild(projects);
-
-  // Load main logic LAST
-  const main = document.createElement("script");
-  main.src = `/js/main.js?v=${v}`;
-  document.body.appendChild(main);
-</script>
-
+    const v = window.SITE_VERSION || "1";
+    ["posts","projects","main"].forEach(f=>{
+      const s=document.createElement("script");
+      s.src=`/${f==="main"?"js":"data"}/${f}.js?v=${v}`;
+      document.body.appendChild(s);
+    });
+  </script>
 </body>
 </html>
 

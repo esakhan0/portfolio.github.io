@@ -17,14 +17,5 @@ window.PROJECTS = [
     stack: ["HTML", "CSS", "JS"],
     source: "https://github.com/",
     demo: "#"
-  },
-  {
-    title: "Building my home network!",
-    date: "2026-01-26",
-    excerpt: "Click to see how I build my home network!",
-    url: "projects/project3",
-    stack: ["HTML", "CSS", "JS"],
-    source: "https://github.com/",
-    demo: "#"
   }
 ];
