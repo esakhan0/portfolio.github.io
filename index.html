@@ -6,35 +6,27 @@
   <meta name="color-scheme" content="dark" />
   <title>Home | Esa Aslam Khan</title>
 
-  <!-- Anti-white-flash + hide content until CSS loads -->
+  <!-- Staggered fade (one-by-one) -->
   <style>
-    html,body{margin:0;background:#0b0c10}
-    body.preload *{visibility:hidden}
-
-    /* Fixed background layer (cannot be clipped) */
-    .bg-fixed{
-      position:fixed; inset:0; z-index:0; pointer-events:none;
-      background:
-        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px),
-        radial-gradient(600px 400px at 75% 10%, rgba(139,92,246,.25), transparent 55%),
-        radial-gradient(600px 400px at 10% 20%, rgba(59,130,246,.12), transparent 55%),
-        #0b0c10;
-      background-size:38px 38px, 38px 38px, auto, auto, auto;
-      background-position:center, center, center, center, center;
+    /* tweak these */
+    .page-animate{ --delay-step: 160ms; } /* slower */
+    .fade-item{
+      opacity: 0;
+      transform: translateY(-16px);
+      animation: fadeDown 1.15s cubic-bezier(.2,.8,.2,1) forwards;
+      animation-delay: calc(var(--i, 0) * var(--delay-step));
+      will-change: transform, opacity;
     }
-
-    /* Ensure content sits above background */
-    .wrap{position:relative; z-index:1}
-
-    /* IMPORTANT: stop any section “paint” covering the grid */
-    .hero,.section,header,footer,.heroIntro,.heroQuick{background:transparent !important}
-    .wrap::before,.wrap::after,.hero::before,.hero::after,body::before,body::after{background:transparent !important}
-
-    /* Your fade-down animation */
-    .page-animate{animation:pageFadeDown .55s cubic-bezier(.2,.8,.2,1) both}
-    @keyframes pageFadeDown{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
-    @media (prefers-reduced-motion: reduce){.page-animate{animation:none !important}}
+    @keyframes fadeDown{
+      to{ opacity: 1; transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .fade-item{
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+    }
   </style>
 
   <!-- Version + CSS loader -->
@@ -56,7 +48,7 @@
   <div class="bg-fixed" aria-hidden="true"></div>
 
   <div class="wrap page-animate">
-    <header class="nav">
+    <header class="nav fade-item">
       <a class="brand" href="/" aria-label="Go to home">
         <span class="icon">💻</span>
         <span>Esa Aslam Khan</span>
@@ -71,7 +63,7 @@
     </header>
 
     <section class="hero">
-      <div class="heroIntro">
+      <div class="heroIntro fade-item">
         <span class="pill">Home</span>
         <h1>Hello! <span class="wave">👋</span></h1>
         <p class="sub">
@@ -82,7 +74,7 @@
         </p>
       </div>
 
-      <div class="heroQuick">
+      <div class="heroQuick fade-item">
         <div class="card">
           <div class="cardTop">
             <div class="cardTitle">Quick links</div>
@@ -104,7 +96,7 @@
       </div>
     </section>
 
-    <section class="section">
+    <section class="section fade-item">
       <div class="sectionTop">
         <div><h2>Latest posts</h2><p>Check out my recent posts!</p></div>
         <a class="seeAll" href="/posts">See all</a>
@@ -112,7 +104,7 @@
       <div class="list" id="latestPosts"></div>
     </section>
 
-    <section class="section">
+    <section class="section fade-item">
       <div class="sectionTop">
         <div><h2>Latest projects</h2><p>Many of my latest projects are down here!</p></div>
         <a class="seeAll" href="/projects">See all</a>
@@ -120,7 +112,7 @@
       <div class="list" id="latestProjects"></div>
     </section>
 
-    <footer class="footer">
+    <footer class="footer fade-item">
       <div>© <span id="year"></span> Esa Aslam Khan</div>
       <div class="footerLinks">
         <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
@@ -134,6 +126,11 @@
   <script>
     const v = window.SITE_VERSION || "1";
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Auto-stagger order (no manual --i needed)
+    document.querySelectorAll(".fade-item").forEach((el, i) => {
+      el.style.setProperty("--i", i);
+    });
 
     const s1 = document.createElement("script"); s1.src = `/data/posts.js?v=${v}`; document.body.appendChild(s1);
     const s2 = document.createElement("script"); s2.src = `/data/projects.js?v=${v}`; document.body.appendChild(s2);
