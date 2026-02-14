@@ -17,5 +17,14 @@ window.PROJECTS = [
     stack: ["HTML", "CSS", "JS"],
     source: "https://github.com/",
     demo: "#"
+  },
+  {
+    title: "My Experience Building Multiple PC's ",
+    date: "2026-02-14",
+    excerpt: "Click to see how I found making multiple pc's!",
+    url: "projects/project3",
+    stack: ["HTML", "CSS", "JS"],
+    source: "https://github.com/",
+    demo: "#"
   }
 ];
