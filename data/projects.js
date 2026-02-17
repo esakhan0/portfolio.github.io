@@ -19,10 +19,19 @@ window.PROJECTS = [
     demo: "#"
   },
   {
-    title: "My Experience Building Multiple PC's ",
+    title: "My Experience Building Multiple PC's",
     date: "2026-02-14",
     excerpt: "Click to see how I found making multiple pc's!",
     url: "projects/project3",
+    stack: ["HTML", "CSS", "JS"],
+    source: "https://github.com/",
+    demo: "#"
+  },
+  {
+    title: "How I Built My Ultimate Smart Home from Scratch!",
+    date: "2026-02-14",
+    excerpt: "I transformed my home into a fully automated, locally controlled system—managing everything from lights to hot water—without relying on the cloud.",
+    url: "projects/project4",
     stack: ["HTML", "CSS", "JS"],
     source: "https://github.com/",
     demo: "#"
