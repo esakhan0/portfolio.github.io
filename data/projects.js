@@ -29,7 +29,7 @@ window.PROJECTS = [
   },
   {
     title: "How I Built My Ultimate Smart Home from Scratch!",
-    date: "2026-02-14",
+    date: "2026-02-17",
     excerpt: "I transformed my home into a fully automated, locally controlled system—managing everything from lights to hot water—without relying on the cloud.",
     url: "projects/project4",
     stack: ["HTML", "CSS", "JS"],
