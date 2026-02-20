@@ -35,5 +35,14 @@ window.PROJECTS = [
     stack: ["HTML", "CSS", "JS"],
     source: "https://github.com/",
     demo: "#"
+  },
+  {
+    title: "Designing a Fully Local ZigBee Mesh Infrastructure",
+    date: "2026-02-20",
+    excerpt: "Designing a Fully Local ZigBee Infrastructure with Docker and Raspberry Pi 5",
+    url: "projects/project5",
+    stack: ["HTML", "CSS", "JS"],
+    source: "https://github.com/",
+    demo: "#"
   }
 ];

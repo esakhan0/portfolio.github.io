@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="color-scheme" content="dark" />
+  <title>My Experience Building PC's</title>
+
+  <!-- Stop white flash + hide until CSS loads -->
+  <style>
+    html,body{margin:0;background:#0b0c10}
+    body.preload *{visibility:hidden}
+
+    /* Fixed background layer (never clips) */
+    .bg-fixed{
+      position:fixed; inset:0; z-index:0; pointer-events:none;
+      background:
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px),
+        radial-gradient(600px 400px at 75% 10%, rgba(139,92,246,.25), transparent 55%),
+        radial-gradient(600px 400px at 10% 20%, rgba(59,130,246,.12), transparent 55%),
+        #0b0c10;
+      background-size:38px 38px, 38px 38px, auto, auto, auto;
+      background-position:center, center, center, center, center;
+    }
+    .wrap{position:relative; z-index:1}
+
+    /* Slow stagger fade in */
+    .page-animate{ --delay-step: 170ms; }
+    .fade-item{
+      opacity:0;
+      transform: translateY(-16px);
+      animation: fadeDown 1.25s cubic-bezier(.2,.8,.2,1) forwards;
+      animation-delay: calc(var(--i, 0) * var(--delay-step));
+      will-change: transform, opacity;
+    }
+    @keyframes fadeDown{ to{opacity:1; transform:translateY(0)} }
+
+    @media (prefers-reduced-motion: reduce){
+      .fade-item{animation:none !important; opacity:1 !important; transform:none !important;}
+    }
+  </style>
+
+  <!-- Version + CSS loader (cache-busted) -->
+  <script src="/js/version.js"></script>
+  <script>
+    (function () {
+      const v = window.SITE_VERSION || "1";
+      const css = document.createElement("link");
+      css.rel = "stylesheet";
+      css.href = `/css/style.css?v=${v}`;
+      css.onload = () => document.body.classList.remove("preload");
+      document.head.appendChild(css);
+      setTimeout(() => document.body.classList.remove("preload"), 1200);
+    })();
+  </script>
+</head>
+
+<body class="preload">
+  <div class="bg-fixed" aria-hidden="true"></div>
+
+<div class="wrap page-animate">
+    <!-- NAV -->
+    <header class="nav fade-item">
+      <a class="brand" href="/" aria-label="Go to home">
+      <span class="icon">💻</span>
+        <span>Esa Aslam Khan</span>
+      </a>
+
+      <nav class="navlinks" aria-label="Primary navigation">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+        <a href="/projects" class="active">Projects</a>
+        <a href="/posts">Blog</a>
+        <a href="/certifications">Certifications</a>
+      </nav>
+    </header>
+
+  <!-- POST -->
+  <article class="card post fade-item">
+    <div class="postTop">
+      <span class="pill">Project</span>
+      <div class="postMeta">Feb 20, 2026 • 6 min read</div>
+    </div>
+
+    <h1 class="postTitle">Designing a Fully Local ZigBee Mesh Infrastructure</h1>
+    <p class="sub">
+    Designing a Fully Local ZigBee Infrastructure with Docker and Raspberry Pi 5 </p>
+<p> When I began transforming my room into a smart environment, I wasn’t just focused on devices — I was focused on architecture. I wanted a system that was fast, local, scalable, and independent from cloud platforms. Performance and control mattered more to me than convenience.</p>
+<h2>Researching the Right Coordinator Software</h2>
+<p> After purchasing my initial ZigBee devices — mainly IKEA products due to their reliability and efficiency — I started researching how to coordinate and manage them properly. Most consumer setups rely on manufacturer hubs, but those are often cloud-dependent and restrictive.&nbsp;That’s when I discovered ZigBee2MQTT.&nbsp;What immediately stood out was its ability to: Run completely locally, Avoid vendor lock-in, Communicate using MQTT (lightweight and fast), Support a wide range of ZigBee devices Integrate easily into containerised environments.For someone building a structured home-lab environment, this was ideal.</p>
+<p> I wanted my smart room to operate independently of external servers. Local communication is not only faster, but more reliable and more secure. If my internet goes down, my automations should still work. ZigBee2MQTT made that possible.</p>
+<h2>Deployment on Docker (Raspberry Pi 5)</h2>
+<p> Rather than installing ZigBee2MQTT directly onto the OS, I deployed it inside a Docker container running on my Raspberry Pi 5.&nbsp;This was intentional.&nbsp;Running it inside Docker provides:&nbsp;Isolation from the base system, Easy upgrades, Clean configuration management, Quick rebuild if something breaks, Scalability for future services.&nbsp;</p>
+<p> The installation process was straightforward. I pulled the official ZigBee2MQTT image from ghcr.io (GitHub Container Registry), imported it into my Docker server, configured the container settings, and mounted the necessary volumes for persistent data storage. Because my Raspberry Pi 5 already hosts other services, Docker allows me to keep everything modular. Each service runs independently, but they communicate efficiently through MQTT.</p>
+<h2>The Wireless ZigBee Coordinator (Dongle &amp; Router)</h2>
+<p> One of the most interesting parts of this project was choosing a wireless ZigBee coordinator.&nbsp;Instead of a standard USB-only dongle that must stay physically attached to the Raspberry Pi, I purchased a Wi-Fi-enabled ZigBee coordinator from Alibaba. This allows the coordinator to connect to my network wirelessly.&nbsp;The benefits of this design:&nbsp;I can position the coordinator anywhere in the house, I can optimise signal placement for better ZigBee mesh coverage, I’m not limited by USB cable length The Raspberry Pi can stay in my rack/server location.&nbsp;</p>
+<p> After receiving the dongle, the setup process involved: Powering the device, Connecting it to Wi-Fi, Assigning it a stable IP address, Configuring ZigBee2MQTT to point to the coordinator’s network address. Once connected, ZigBee2MQTT recognised the coordinator immediately. From there, pairing devices became simple. Each IKEA ZigBee device joined the mesh network and began communicating through MQTT.</p>
+<h2>Why Local Processing Matters</h2>
+<p> Running everything locally means: Ultra-low latency device response, No dependency on third-party servers, Increased privacy, Faster automation triggers, Greater long-term stability.&nbsp;The Raspberry Pi 5 acts as the processing hub. The ZigBee coordinator handles radio communication. ZigBee2MQTT translates ZigBee signals into MQTT messages. And from there, my automation system can respond instantly.&nbsp;The Result What started as a simple idea — “make my room smarter” — evolved into a properly structured, locally processed ZigBee mesh network running inside a containerised environment. It’s low power. It’s scalable. It’s wireless. It’s efficient. And most importantly — it’s under my control. This project wasn’t just about installing smart devices. It was about designing infrastructure. Have a look below at my zigbee dashboard!&nbsp;&nbsp;</p>
+<div class="media"> <img src="../images/Screenshot 2026-02-20 183922.png" alt="Dreamweaver screenshot" loading="lazy">
+  <h2 data-start="2369" data-end="2412">The Wireless ZigBee Coordinator (Dongle)</h2>
+</div>
+<div class="heroImg"> </div>
+
+    <div class="postNav">
+      <a class="btn btnGhost" href="/projects">← Back to Projects</a>
+    </div>
+  </article>
+
+  <!-- FOOTER -->
+  <footer class="footer fade-item" id="contact">
+      <div>© <span id="year"></span> Esa Aslam Khan</div>
+      <div class="footerLinks">
+        <a href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:you@example.com">Email</a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Year + stagger ordering
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.querySelectorAll(".fade-item").forEach((el,i)=>el.style.setProperty("--i",i));
+
+    // Load data + main logic (cache-busted)
+    const v = window.SITE_VERSION || "1";
+    const posts = document.createElement("script"); posts.src = `/data/posts.js?v=${v}`; document.body.appendChild(posts);
+    const projects = document.createElement("script"); projects.src = `/data/projects.js?v=${v}`; document.body.appendChild(projects);
+    const main = document.createElement("script"); main.src = `/js/main.js?v=${v}`; document.body.appendChild(main);
+  </script>
+</body>
+</html>
